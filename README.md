@@ -2,6 +2,8 @@
 
 # XRD Converter
 
+NEW -> use `pip install -r requirements.txt`
+
 This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
 
 
