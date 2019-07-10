@@ -1,0 +1,12 @@
+Metadata-Version: 2.1
+Name: XRD-Converter
+Version: 0.0.1
+Summary: converts xrd files into readable xlsx
+Home-page: https://github.com/Jobenland/XRD-Converter
+Author: Jonathan Obenland
+Author-email: jobenland1@gmail.com
+License: UNKNOWN
+Description: # XRD-Converter
+Platform: UNKNOWN
+Classifier: Python
+Description-Content-Type: text/markdown

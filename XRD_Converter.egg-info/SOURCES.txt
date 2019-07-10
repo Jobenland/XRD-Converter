@@ -1,0 +1,6 @@
+README.md
+setup.py
+XRD_Converter.egg-info/PKG-INFO
+XRD_Converter.egg-info/SOURCES.txt
+XRD_Converter.egg-info/dependency_links.txt
+XRD_Converter.egg-info/top_level.txt
