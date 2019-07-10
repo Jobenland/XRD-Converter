@@ -1,0 +1,6 @@
+numpy
+PySimpleGUI
+bokeh
+pandas
+zipFile
+xlsxwriter
