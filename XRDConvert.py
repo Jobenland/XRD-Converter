@@ -44,7 +44,6 @@ if sys.version_info[0] >= 3:
 else:
     import PySimpleGUI27 as sg
 
-
 print = sg.EasyPrint
 
 def mainWin():
@@ -67,12 +66,13 @@ def mainWin():
                 sg.PopupError("Insufficent data or Null Pointers given")
                 mainWin()
             elif files != '':
+                window.Close()
                 listOut = createListOut(files)
                 removeHeader(listOut,files)
                 listOfCSV = xrdCsv(listOut)
                 generateSheets(listOfCSV)
                 sg.Popup('Complete')
-                mainWin()
+            break
 
 def createListOut(files):
     listOut = []
@@ -158,17 +158,6 @@ def generateSheets(listOfCSV):
         df = pd.read_csv(csv)
         df.to_excel(writer, sheet_name=filename)
     writer.save()  
-
-
-
-
-
-
-            
-                
-
-            
-
 
 if __name__ == '__main__':
     mainWin()
