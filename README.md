@@ -2,12 +2,16 @@
 
 # XRD Converter
 
-This program generates graphs from a given CSV file and allows the user to generate a User friendly graph
+NEW -> use `pip install -r requirements.txt`
+
+This program takes a folder of raw .out xrd files and removes the header, generates a csv, and adds all xrd files to an xlsx worksheet
 
 
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+put all .out files in a folder to reference in the program
 
 ### Prerequisites
 
@@ -30,10 +34,14 @@ pip install bokeh
 pip install np
 ```
 
-(Easier) much easier to use
+(Easier)
 
 ```
 pip install -r requirements.txt
+```
+Coming soon(instead of cloning from github)...
+```
+pip install XRD-Converter
 ```
 
 ## Running the tests
