@@ -69,7 +69,8 @@ def mainWin():
                 window.Close()
                 listOut = createListOut(files)
                 removeHeader(listOut,files)
-                listOfCSV = xrdCsv(listOut)
+                listOfCSV,listOfComb,titleList = xrdCsv(listOut)
+                multXrdSupport(listOfComb,titleList)
                 generateSheets(listOfCSV)
                 sg.Popup('Complete')
             break
@@ -122,8 +123,12 @@ def removeHeader(listOut,files):
 
 def xrdCsv(listOut):
     listOfCSV = []
+    listOfComb = []
+    titleList = []
+    fileCount =0
     for outFile in listOut:
         filename, file_extension = os.path.splitext(outFile)
+        titleList.append(filename)
         stringAngle=[]
         stringIntensity=[]
         normalizedIntensity=[]
@@ -140,12 +145,16 @@ def xrdCsv(listOut):
                 normalizedIntensity = [((intIntensity[i])/(maxIntensity)) for i in range(len(intAngle))]
             print('All Data Found. Creating CSV...')
             csvName = filename +'.csv'
-            dataf = {'Angle' : intAngle, 'Intensity' : intIntensity, 'Normalized Intensity' : normalizedIntensity}
+            comb = filename + 'Combined'
+            comb = [(intAngle[i],(normalizedIntensity[i]+(1.1*fileCount))) for i in range(len(normalizedIntensity))]
+            dataf = {'Angle' : intAngle, 'Intensity' : intIntensity, 'Normalized Intensity' : normalizedIntensity, 'Mult-XRD Support' : comb}
             df = pd.DataFrame(data=dataf)
             df.to_csv(csvName, index = False)
             print( csvName, ' created. adding to CSV creation list...')
             listOfCSV.append(csvName)
-    return listOfCSV
+            listOfComb.append(comb)
+            fileCount+=1
+    return listOfCSV,listOfComb,titleList
 
 def generateSheets(listOfCSV):
     print('System STANDBY. awaiting user input')
@@ -158,6 +167,18 @@ def generateSheets(listOfCSV):
         df = pd.read_csv(csv)
         df.to_excel(writer, sheet_name=filename)
     writer.save()  
+
+def multXrdSupport(listOfComb,titleList):
+    fileN = "Multi XRD Support.csv"
+    for arr in range(len(listOfComb)):
+        if arr == 0:
+            dataf = {titleList[0] : listOfComb[arr]}
+            df = pd.DataFrame(data=dataf)
+        if arr != 0:
+            head = titleList[arr]
+            df[head] = listOfComb[arr]
+            df.to_csv(fileN, index = False)
+
 
 if __name__ == '__main__':
     mainWin()
