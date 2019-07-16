@@ -147,7 +147,7 @@ def xrdCsv(listOut):
             csvName = filename +'.csv'
             comb = filename + 'Combined'
             comb = [(intAngle[i],(normalizedIntensity[i]+(1.1*fileCount))) for i in range(len(normalizedIntensity))]
-            dataf = {'Angle' : intAngle, 'Intensity' : intIntensity, 'Normalized Intensity' : normalizedIntensity, 'Mult-XRD Support' : comb}
+            dataf = {'Angle' : intAngle, 'Intensity' : intIntensity, 'Normalized Intensity' : normalizedIntensity, 'Multi-XRD Support' : comb}
             df = pd.DataFrame(data=dataf)
             df.to_csv(csvName, index = False)
             print( csvName, ' created. adding to CSV creation list...')
